@@ -1,6 +1,6 @@
 package com.github.epay.config.kafka;
 
-import com.github.epay.domain.enums.BlogKafkaTopic;
+import com.github.epay.domain.enums.KafkaTopic;
 import com.github.epay.domain.exception.ExceptionEnum;
 import com.github.epay.domain.exception.impl.CustomException;
 import lombok.Setter;
@@ -15,10 +15,10 @@ import java.util.Optional;
 @Setter
 @ConfigurationProperties("topic")
 public class KafkaTopicProperties {
-    private Map<BlogKafkaTopic, String> names;
+    private Map<KafkaTopic, String> names;
 
-    public String getTopic(BlogKafkaTopic blogKafkaTopic) {
-        return Optional.ofNullable(names.get(blogKafkaTopic))
+    public String getTopic(KafkaTopic kafkaTopic) {
+        return Optional.ofNullable(names.get(kafkaTopic))
                 .orElseThrow(() -> new CustomException(ExceptionEnum.ENDPOINT_EXCEPTION));
     }
 }

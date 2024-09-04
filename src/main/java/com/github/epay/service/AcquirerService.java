@@ -1,14 +1,13 @@
 package com.github.epay.service;
 
 import com.github.epay.domain.dto.common.PaymentDto;
-import com.github.epay.domain.dto.request.PaymentCancelRequest;
-import com.github.epay.domain.dto.request.PaymentProcessRequest;
+import com.github.epay.domain.dto.request.PaymentRequest;
 
 /**
  * @author Raman Haurylau
  */
 public interface AcquirerService {
-    PaymentDto cancel(PaymentCancelRequest request);
+    PaymentDto cancel(PaymentRequest request);
 
-    PaymentDto process(PaymentProcessRequest request);
+    PaymentDto process(PaymentRequest request);
 }

@@ -31,7 +31,7 @@ public class PaymentStateServiceImpl implements PaymentStateService {
     public PaymentDto paymentCommited(Long id) {
         PaymentDto paymentDto = updatePaymentStateAndReturnDto(id, PaymentState.COMMITED);
 
-        return paymentProducer.sendMessage(paymentDto);
+        return paymentProducer.sendPayment(paymentDto);
     }
 
     @Override

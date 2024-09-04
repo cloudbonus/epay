@@ -1,8 +1,7 @@
 package com.github.epay.service.impl;
 
 import com.github.epay.domain.dto.common.PaymentDto;
-import com.github.epay.domain.dto.request.PaymentCancelRequest;
-import com.github.epay.domain.dto.request.PaymentProcessRequest;
+import com.github.epay.domain.dto.request.PaymentRequest;
 import com.github.epay.domain.enums.PaymentEvent;
 import com.github.epay.domain.enums.PaymentState;
 import com.github.epay.service.AcquirerService;
@@ -28,7 +27,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     @Override
-    public void cancel(PaymentCancelRequest request) {
+    public void cancel(PaymentRequest request) {
         PaymentDto paymentDto = acquirerService.cancel(request);
 
         PaymentStateMachine sm = paymentStateMachineFactory.create(paymentDto);
@@ -38,14 +37,14 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void process(PaymentProcessRequest request) {
+    public void process(PaymentRequest request) {
         PaymentDto paymentDto = acquirerService.process(request);
 
         PaymentStateMachine sm = paymentStateMachineFactory.create(paymentDto);
         PaymentState newState = sm.sendEvent(PaymentEvent.PLACE);
 
         paymentDto.setState(newState);
-        paymentDto =  paymentProducer.sendMessage(paymentDto);
+        paymentDto =  paymentProducer.sendPayment(paymentDto);
 
         log.info("Payment [{}] [{}]", paymentDto.getId(), paymentDto.getState());
     }

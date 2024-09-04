@@ -5,7 +5,7 @@ services:
     env_file: .env
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - .postgres:/docker-entrypoint-initdb.d
+      - ./util/postgres:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
@@ -20,8 +20,8 @@ services:
     depends_on:
       - postgres
     build:
-      context: epay
-      dockerfile: epay/Dockerfile
+      context: ./epay
+      dockerfile: ./epay/Dockerfile
     restart: on-failure
     env_file: .env
     environment:
@@ -39,8 +39,8 @@ services:
     depends_on:
       - postgres
     build:
-      context: blog
-      dockerfile: blog/Dockerfile
+      context: ./blog
+      dockerfile: ./blog/Dockerfile
     restart: on-failure
     env_file: .env
     environment:

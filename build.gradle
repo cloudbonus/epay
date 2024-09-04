@@ -32,14 +32,10 @@ dependencies {
 
 	implementation 'com.github.spotbugs:spotbugs-annotations:4.8.5'
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.5'
 	compileOnly 'org.hibernate.orm:hibernate-jpamodelgen'
 	annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen'
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
 }

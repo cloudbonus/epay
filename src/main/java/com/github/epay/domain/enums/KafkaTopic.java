@@ -3,6 +3,6 @@ package com.github.epay.domain.enums;
 /**
  * @author Raman Haurylau
  */
-public enum BlogKafkaTopic {
+public enum KafkaTopic {
     CANCEL, PROCESS, UPDATE
 }

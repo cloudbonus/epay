@@ -1,8 +1,7 @@
 package com.github.epay.service.impl;
 
 import com.github.epay.domain.dto.common.PaymentDto;
-import com.github.epay.domain.dto.request.PaymentCancelRequest;
-import com.github.epay.domain.dto.request.PaymentProcessRequest;
+import com.github.epay.domain.dto.request.PaymentRequest;
 import com.github.epay.domain.enums.PaymentState;
 import com.github.epay.domain.exception.ExceptionEnum;
 import com.github.epay.domain.exception.impl.CustomException;
@@ -29,7 +28,7 @@ public class AcquirerServiceImpl implements AcquirerService {
 
 
     @Override
-    public PaymentDto cancel(PaymentCancelRequest request) {
+    public PaymentDto cancel(PaymentRequest request) {
 
         Payment payment = paymentRepository
                 .findByPaymentId(request.paymentId())
@@ -40,7 +39,7 @@ public class AcquirerServiceImpl implements AcquirerService {
     }
 
     @Override
-    public PaymentDto process(PaymentProcessRequest request) {
+    public PaymentDto process(PaymentRequest request) {
         log.info("Starting creation of new payment");
         Payment payment = paymentMapper.toPayment(request);
 

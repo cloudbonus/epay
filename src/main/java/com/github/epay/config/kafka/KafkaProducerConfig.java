@@ -1,6 +1,9 @@
 package com.github.epay.config.kafka;
 
+import com.github.epay.domain.dto.common.PaymentDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +23,13 @@ public class KafkaProducerConfig {
     private final KafkaProperties kafkaProperties;
 
     @Bean
-    public ProducerFactory<String, String> producerFactory() {
+    public ProducerFactory<String, PaymentDto> producerFactory() {
         Map<String, Object> properties = kafkaProperties.buildProducerProperties(null);
         return new DefaultKafkaProducerFactory<>(properties);
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
+    public KafkaTemplate<String, PaymentDto> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }
